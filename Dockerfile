@@ -27,6 +27,7 @@ RUN apt-get -y update && apt-get -y install vim \
 # Install Vundle
 # Reference https://github.com/VundleVim/Vundle.vim#quick-start
 RUN git config --global http.sslVerify false && git clone https://github.com/VundleVim/Vundle.vim.git /usr/share/.vim/bundle/Vundle.vim
+RUN sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 RUN mkdir /usr/share/.vim/colors
 COPY ./vimrc /etc/vim/vimrc.local
 RUN vim +PluginInstall +qall
