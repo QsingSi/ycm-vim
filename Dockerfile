@@ -33,11 +33,14 @@ RUN apt-get -y update && apt-get -y install vim \
 
 # Install Vundle
 # Reference https://github.com/VundleVim/Vundle.vim#quick-start
-RUN git config --global http.sslVerify false && git clone https://github.com/VundleVim/Vundle.vim.git /root/.vim/bundle/Vundle.vim
-RUN chsh -s `which zsh` && service cron start && mkdir /root/.vim/colors
-RUN wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O | zsh || true
+RUN git config --global http.sslVerify false \
+ && git clone https://github.com/VundleVim/Vundle.vim.git /root/.vim/bundle/Vundle.vim \
+ && chsh -s `which zsh` \
+ && service cron start \
+ && mkdir /root/.vim/colors \
+ && wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O | zsh
 COPY ./vimrc /root/.vimrc
-COPY ./monokai.vim /root/.vim/colors/
+COPY ./monokai.vim /root/.vim/colors
 RUN vim +PluginInstall +qall
 
 
