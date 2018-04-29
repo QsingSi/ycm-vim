@@ -1,4 +1,6 @@
 FROM ubuntu:18.04
+MAINTAINER <wzq67675@163.com>
+
 WORKDIR /root
 
 RUN apt-get -y update && apt-get -y install locales \
