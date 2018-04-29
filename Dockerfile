@@ -24,6 +24,7 @@ RUN apt-get -y update && apt-get -y install vim \
  curl \
  wget \
  git-core \
+ cron \
  && apt -qy autoremove \
  && apt -qy clean \
  && rm -rf /var/lib/apt/lists/* 
@@ -31,8 +32,7 @@ RUN apt-get -y update && apt-get -y install vim \
 # Install Vundle
 # Reference https://github.com/VundleVim/Vundle.vim#quick-start
 RUN git config --global http.sslVerify false && git clone https://github.com/VundleVim/Vundle.vim.git /root/.vim/bundle/Vundle.vim
-RUN chsh -s `which zsh`
-RUN mkdir /root/.vim/colors
+RUN chsh -s `which zsh` && service cron start && mkdir /root/.vim/colors
 RUN wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O | zsh || true
 COPY ./vimrc /root/.vimrc
 COPY ./monokai.vim /root/.vim/colors/
