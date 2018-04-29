@@ -34,7 +34,7 @@ RUN git config --global http.sslVerify false && git clone https://github.com/Vun
 RUN chsh -s `which zsh`
 RUN mkdir /root/.vim/colors
 RUN wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O | zsh || true
-COPY ./vimrc /etc/vim/vimrc.local
+COPY ./vimrc /root/.vimrc
 COPY ./monokai.vim /root/.vim/colors/
 RUN vim +PluginInstall +qall
 
