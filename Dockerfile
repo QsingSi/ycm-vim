@@ -22,6 +22,7 @@ RUN apt-get -y update && apt-get -y install vim \
  cmake \
  python-dev \
  python3-dev \
+ python3-pip \
  zsh \
  curl \
  wget \
@@ -41,10 +42,12 @@ RUN git config --global http.sslVerify false \
  && wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O | zsh
 COPY ./vimrc /root/.vimrc
 COPY ./monokai.vim /root/.vim/colors
-RUN vim +PluginInstall +qall
+COPY ./requirements.txt /root
+RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simpe -r /root/requirements.txt \
+ && vim +PluginInstall +qall
 
 
 # Install YouCompleteMe
 # Reference https://github.com/Valloric/YouCompleteMe#ubuntu-linux-x64
 RUN /root/.vim/bundle/YouCompleteMe/install.py --clang-completer
-EXPOSE 22 80 443 8888
+EXPOSE 22 80 443 8888 3306
