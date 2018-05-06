@@ -43,8 +43,7 @@ RUN git config --global http.sslVerify false \
 COPY ./vimrc /root/.vimrc
 COPY ./monokai.vim /root/.vim/colors
 COPY ./requirements.txt /root
-RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simpe -r /root/requirements.txt \
- && vim +PluginInstall +qall
+RUN vim +PluginInstall +qall
 
 
 # Install YouCompleteMe
