@@ -12,7 +12,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=/root/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -59,10 +59,17 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '/root/.ycm_extra_conf.py'
 let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
 let g:ycm_python_binary_path = '/usr/bin/python3'
+" let g:ycm_server_log_level = 'info'
+let g:ycm_cache_omnifunc = 0
+let g:ycm_confirm_extra_conf= 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_semantic_triggers = {
+            \ 'java': ['.']
+            \}
 set completeopt-=preview
 let g:ycm_seed_identifiers_with_syntax = 1
 
@@ -103,3 +110,41 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+inoremap ( ()<Esc>i
+inoremap [ []<Esc>i
+inoremap { {<CR>}<Esc>O
+autocmd Syntax html,vim inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
+inoremap ) <c-r>=ClosePair(')')<CR>
+inoremap ] <c-r>=ClosePair(']')<CR>
+inoremap } <c-r>=CloseBracket()<CR>
+inoremap " <c-r>=QuoteDelim('"')<CR>
+inoremap ' <c-r>=QuoteDelim("'")<CR>
+
+function ClosePair(char)
+ if getline('.')[col('.') - 1] == a:char
+  return "\<Right>"
+ else
+  return a:char
+ endif
+endf
+    
+function CloseBracket()
+ if match(getline(line('.') + 1), '\s*}') < 0
+  return "\<CR>}"
+ else
+  return "\<Esc>j0f}a"
+ endif
+endf
+          
+function QuoteDelim(char)
+ let line = getline('.')
+ let col = col('.')
+ if line[col - 2] == "\\"
+  return a:char
+ elseif line[col - 1] == a:char
+  return "\<Right>"
+ else
+  return a:char.a:char."\<Esc>i"
+ endif
+endf

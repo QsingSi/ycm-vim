@@ -43,10 +43,11 @@ RUN git config --global http.sslVerify false \
 COPY ./vimrc /root/.vimrc
 COPY ./monokai.vim /root/.vim/colors
 COPY ./requirements.txt /root
+COPY ./ycm_extra_conf.py /root/.ycm_extra_conf.py
 RUN vim +PluginInstall +qall
 
 
 # Install YouCompleteMe
 # Reference https://github.com/Valloric/YouCompleteMe#ubuntu-linux-x64
-RUN /root/.vim/bundle/YouCompleteMe/install.py --clang-completer
+RUN /root/.vim/bundle/YouCompleteMe/install.py --java-completer
 EXPOSE 22 80 443 8888 3306
