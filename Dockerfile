@@ -49,4 +49,4 @@ RUN vim +PluginInstall +qall
 # Install YouCompleteMe
 # Reference https://github.com/Valloric/YouCompleteMe#ubuntu-linux-x64
 RUN /root/.vim/bundle/YouCompleteMe/install.py --java-completer
-EXPOSE 22 80 443 8888 3306
+EXPOSE 22 80 8888 3306

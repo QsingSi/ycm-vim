@@ -5,14 +5,18 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set backspace=2
-colorschem monokai
+""colorschem monokai
+colorschem Monokai-Refined
+
+set t_Co=256
+let g:rehash256 = 1
 
 set nocompatible              " be iMproved, required
 
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/root/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -32,7 +36,11 @@ Plugin 'git://git.wincent.com/command-t.git'
 "Plugin 'file:///home/gmarik/path/to/plugin'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Chiel92/vim-autoformat'
+""Plugin 'bagrat/vim-workspace'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'https://github.com/scrooloose/nerdtree'
+Plugin 'git@github.com:fugalh/desert.vim.git'
 Plugin 'Raimondi/delimitMate'
 Plugin 'kien/rainbow_parentheses.vim'
 " The sparkup vim script is in a subdirectory of this repo called vim.
@@ -59,26 +67,29 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-let g:ycm_global_ycm_extra_conf = '/root/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
 let g:ycm_python_binary_path = '/usr/bin/python3'
-" let g:ycm_server_log_level = 'info'
-let g:ycm_cache_omnifunc = 0
-let g:ycm_confirm_extra_conf= 0
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_semantic_triggers = {
-            \ 'java': ['.']
-            \}
 set completeopt-=preview
 let g:ycm_seed_identifiers_with_syntax = 1
 
+let g:ycm_cache_omnifunc = 0
+let g:ycm_confirm_extra_conf= 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_semantic_triggers = {
+            \ 'java': ['.']
+            \ }
+
+
 let g:ycm_semantic_triggers =  {
-            \ 'java': ['re!\w{2}'],
+            \ 'java': ['re!\w{1}'],
             \ 'cs,lua,javascript': ['re!\w{2}'],
             \ }
 
-nnoremap <F3> :Autoformat<CR>
+nnoremap <tab> :Autoformat<CR>
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
@@ -111,6 +122,7 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+
 inoremap ( ()<Esc>i
 inoremap [ []<Esc>i
 inoremap { {<CR>}<Esc>O
@@ -128,7 +140,7 @@ function ClosePair(char)
   return a:char
  endif
 endf
-    
+
 function CloseBracket()
  if match(getline(line('.') + 1), '\s*}') < 0
   return "\<CR>}"
@@ -136,7 +148,7 @@ function CloseBracket()
   return "\<Esc>j0f}a"
  endif
 endf
-          
+
 function QuoteDelim(char)
  let line = getline('.')
  let col = col('.')
@@ -148,3 +160,6 @@ function QuoteDelim(char)
   return a:char.a:char."\<Esc>i"
  endif
 endf
+
+let g:airline_theme="luna"
+let g:airline_powerline_fonts = 1
