@@ -40,6 +40,7 @@ RUN git config --global http.sslVerify false \
  && wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O | zsh
 COPY ./vimrc /root/.vimrc
 COPY ./monokai.vim /root/.vim/colors
+COPY ./Monokai-Refined.vim /root/.vim/colors
 COPY ./requirements.txt /root
 COPY ./ycm_extra_conf.py /root/.ycm_extra_conf.py
 RUN vim +PluginInstall +qall
