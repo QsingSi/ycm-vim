@@ -26,6 +26,7 @@ RUN apt-get -y update && apt-get -y install vim \
  zsh \
  git-core \
  cron \
+ wget \
  && apt -qy autoremove \
  && apt -qy clean \
  && rm -rf /var/lib/apt/lists/* 
@@ -40,7 +41,7 @@ RUN git config --global http.sslVerify false \
  && wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O | zsh
 COPY ./vimrc /root/.vimrc
 COPY ./monokai.vim /root/.vim/colors
-COPY ./requirements.txt /root
+COPY ./molokai.vim /root/.vim/colors
 COPY ./ycm_extra_conf.py /root/.ycm_extra_conf.py
 RUN vim +PluginInstall +qall
 
@@ -48,4 +49,3 @@ RUN vim +PluginInstall +qall
 # Install YouCompleteMe
 # Reference https://github.com/Valloric/YouCompleteMe#ubuntu-linux-x64
 RUN /root/.vim/bundle/YouCompleteMe/install.py --java-completer
-EXPOSE 22 80 8888 3306
