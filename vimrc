@@ -40,7 +40,7 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'https://github.com/scrooloose/nerdtree'
-Plugin 'git@github.com:fugalh/desert.vim.git'
+""Plugin 'git@github.com:fugalh/desert.vim.git'
 Plugin 'Raimondi/delimitMate'
 Plugin 'kien/rainbow_parentheses.vim'
 " The sparkup vim script is in a subdirectory of this repo called vim.
