@@ -25,6 +25,7 @@ RUN apt-get -y update && apt-get -y install vim \
  python3-pip \
  zsh \
  git-core \
+ astyle \
  cron \
  wget \
  && apt -qy autoremove \
