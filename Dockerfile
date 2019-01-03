@@ -47,7 +47,7 @@ COPY ./monokai.vim /root/.vim/colors
 COPY ./molokai.vim /root/.vim/colors
 COPY ./pip.conf /root/.pip
 COPY ./ycm_extra_conf.py /root/.ycm_extra_conf.py
-COPY ./source.list /etc/apt 
+COPY ./sources.list /etc/apt 
 RUN vim +PluginInstall +qall
 
 
