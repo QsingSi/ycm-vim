@@ -42,10 +42,12 @@ RUN git config --global http.sslVerify false \
  && wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
  && mkdir /root/.pip
 COPY ./vimrc /root/.vimrc
+COPY ./zshrc /root/.zshrc
 COPY ./monokai.vim /root/.vim/colors
 COPY ./molokai.vim /root/.vim/colors
 COPY ./pip.conf /root/.pip
 COPY ./ycm_extra_conf.py /root/.ycm_extra_conf.py
+COPY ./source.list /etc/apt -f
 RUN vim +PluginInstall +qall
 
 
