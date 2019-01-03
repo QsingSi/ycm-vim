@@ -28,6 +28,9 @@ RUN apt-get -y update && apt-get -y install vim \
  astyle \
  cron \
  wget \
+ lrzsz \
+ unrar \
+ zip \
  && apt -qy autoremove \
  && apt -qy clean \
  && rm -rf /var/lib/apt/lists/* 
