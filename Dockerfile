@@ -56,4 +56,4 @@ RUN vim +PluginInstall +qall
 
 # Install YouCompleteMe
 # Reference https://github.com/Valloric/YouCompleteMe#ubuntu-linux-x64
-RUN /root/.vim/bundle/YouCompleteMe/install.py --java-completer
+RUN python3 /root/.vim/bundle/YouCompleteMe/install.py --clang-completer

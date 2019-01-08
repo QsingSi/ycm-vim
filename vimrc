@@ -6,7 +6,7 @@ set shiftwidth=4
 set expandtab
 set backspace=2
 ""colorschem monokai
-colorschem monokai
+colorschem molokai
 
 set t_Co=256
 let g:rehash256 = 1
